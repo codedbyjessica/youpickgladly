@@ -7,11 +7,15 @@ import { AgmCoreModule } from '@agm/core';
 import { AppComponent } from './app.component';
 import { ZomatoService } from "./app.service";
 import { LocationComponent } from './location/location.component';
+import { FiltersComponent } from './filters/filters.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LocationComponent
+    LocationComponent,
+    FiltersComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

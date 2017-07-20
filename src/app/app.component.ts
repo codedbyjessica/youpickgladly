@@ -4,20 +4,21 @@ import { ZomatoService } from "./app.service";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
 
   public restaurants
   public myLat
   public myLong
+  public cuisineChoices = []
+  public cuisineString
   public cuisine
+  public radius = "&radius=10000"
   public price
-  public radius
-  cuisineChoices = []
+  public sort
 
-
-  public allCuisinesSelected = false
+  public allCuisines
 
   constructor(private api: ZomatoService) {}
 
@@ -27,57 +28,56 @@ export class AppComponent implements OnInit{
     this.myLong = location.long
   }
 
-  getFilter(){
-    // this.cuisine
-    // this.price
-    this.getFood()
+  selectAllCuisines(isSelected){
+    this.allCuisines = isSelected
+    console.log(this.allCuisines)
+  }
+
+  myCuisine(cuisineArray){
+    this.cuisineChoices = cuisineArray;
+  }
+
+  myPrice(price){
+    this.price = price
+    console.log(price)
+  }
+
+  myRadius(radius){
+    this.radius = "&radius=" + radius
   }
 
   getFood(){
-    // this.myLat = 43.6532
-    // this.myLong = -79.3832
-    this.cuisine = '177'
 
-    if (this.cuisineChoices.length < 1){
-      this.cuisine = undefined
-    }else{
-      this.cuisine = this.cuisineChoices.join(",")
+    // cuisine array
+    if(this.allCuisines === true){
+      this.cuisine = '';
       console.log(this.cuisine)
+    }else{
+      if (this.cuisineChoices.length < 1){
+        this.cuisine = '';
+      }else{
+        this.cuisineString = this.cuisineChoices.join(",")
+        this.cuisine = "&cuisines=" + this.cuisineString
+      }
     }
 
 
-    if(this.cuisine){
-      this.cuisine = "&cuisines=" + this.cuisine
-    }else{this.cuisine = ""}
+    // price
+    if(this.price){
+      this.sort = '&sort=cost&order='+ this.price
+    }else{this.sort="&sort=real_distance&order=desc"}
 
-    this.api.getData(this.myLat, this.myLong, this.cuisine, this.radius).subscribe(res => {
-    console.log(res.restaurants);
-    this.restaurants = res.restaurants
+    if(this.myLat){
+      this.api.getData(this.myLat, this.myLong, this.cuisine, this.radius, this.sort).subscribe(res => {
+      console.log(res.restaurants);
+      this.restaurants = res.restaurants
     });
+    } else{
+      console.log("where u at")
+    }
   }
 
-  cuisineChoice(cuisineId){
-    cuisineId.split(",").forEach(id => {
-      const indexx = this.cuisineChoices.indexOf(id)
-      if (indexx === -1) {
-        this.cuisineChoices.push(id)
-      }else {
-        this.cuisineChoices.splice(indexx, 1);
-      }
-    });
-
-    console.log(this.cuisineChoices)
-  }
-
-  priceChoice(choice): void {
-      this.price = choice;
-      console.log(this.price)
-  }
-
-  distanceChoice(choice): void {
-      this.radius = "&radius=" + choice;
-      console.log(this.radius)
-  }
+  
 
   ngOnInit(){
     

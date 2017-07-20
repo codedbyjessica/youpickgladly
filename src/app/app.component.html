@@ -1,89 +1,22 @@
+<section class="landing">
+  <app-header></app-header>
+  <app-location (myLatLongPlace)="myLocation($event)"></app-location>
+  <app-filters 
+    (go)="getFood()"
+    (cuisine)="myCuisine($event)"
+    (price)="myPrice($event)"
+    (radius)="myRadius($event)"
+    (selectAll)="selectAllCuisines($event)">
+  </app-filters>
+</section>
 
-<app-location (myLatLongPlace)="myLocation($event)"></app-location>
-
-<div>
-    <label for="fastfood">Fast Food</label>
-    <input (change)="cuisineChoice($event.target.getAttribute('value'))" 
-      type="checkbox" id="fastfood" value="40">
-
-    <label for="westernfood">Western</label>
-    <input (change)="cuisineChoice($event.target.getAttribute('value'))" 
-      type="checkbox" id="westernfood" value="1,38">
-
-    <label for="asianfood">Asian/South Asian</label>
-    <input (change)="cuisineChoice($event.target.getAttribute('value'))" 
-      type="checkbox" id="asianfood" value="278,177,148"> 
-    <!--sushi-->
-
-    <label for="middleeasternfood">Middle Eastern/African</label>
-    <input (change)="cuisineChoice($event.target.getAttribute('value'))" 
-      type="checkbox" id="middleeasternfood" value="137,152">
-
-    <label for="mexfood">south american, mexiacn</label>
-    <input (change)="cuisineChoice($event.target.getAttribute('value'))" 
-      type="checkbox" id="mexfood" value="972,73">
-
-    <label for="lightfood">something light</label>
-    <input (change)="cuisineChoice($event.target.getAttribute('value'))" 
-      type="checkbox" id="lightfood" value="30,304">
-    <!--cafes, sandwiches-->
-
-    <br />
-    <br />
-
-    distance
-    <label for="distance1">on foot</label>
-    <input type="radio"
-      id="distance1"
-      (change)="distanceChoice(1500)"
-      name="distance">
-    <label for="distance2">short drive</label>
-    <input type="radio"
-      id="distance2"
-      (change)="distanceChoice(5000)"
-      name="distance">
-    <label for="distance3">reasonable drive</label>
-    <input type="radio"
-      id="distance3"
-      (change)="distanceChoice(10000)"
-      name="distance">
-    <label for="distance4">adventure timeeeeeeeee</label>
-    <input type="radio"
-      id="distance4"
-      (change)="distanceChoice(20000)"
-      name="distance">
-
-    <br />
-    <br />
-
-    dollars
-
-    <label for="price1">No Cash</label>
-    <input type="radio"
-      id="price1"
-      (change)="priceChoice(1)"
-      name="price">
-    <label for="price2">whatevz</label>
-    <input type="radio"
-      id="price2"
-      (change)="priceChoice(2)"
-      name="price">
-    <label for="price3">rollin in dat dough</label>
-    <input type="radio"
-      id="price3"
-      (change)="priceChoice(3)"
-      name="price">
-
-      <br />
-      <br />
-
-  <button (click)=getFilter()>help me decide</button>
-</div>
-
-<div *ngFor="let restaurant of restaurants">
-  <div>
-    name:
-    {{ restaurant.restaurant.name }}
+<section class="results">
+  How about
+  <div class="result"
+  *ngFor="let restaurant of restaurants">
+    <h2>{{ restaurant.restaurant.name }}</h2>
+    ({{ restaurant.restaurant.cuisines}})
+    <p>Price: {{ restaurant.restaurant.price_range }} Ratings: {{ restaurant.restaurant.user_rating.aggregate_rating }}</p>
   </div>
-</div>
+</section>
 

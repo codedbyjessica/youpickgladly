@@ -1,0 +1,100 @@
+<div class="options cuisineOptions">
+  <h1>Whachu feelin?</h1>
+    <input (change)="cuisineChoice($event.target.getAttribute('value'))" 
+      type="checkbox" id="fastfood" value="40">
+    <label for="fastfood">Fast Food</label>
+
+    <input (change)="cuisineChoice($event.target.getAttribute('value'))" 
+      type="checkbox" id="lightfood" value="30,304">
+    <label for="lightfood">something light</label>
+    <!--cafes, sandwiches-->
+
+    <input (change)="cuisineChoice($event.target.getAttribute('value'))" 
+      type="checkbox" id="westernfood" value="1,38">
+    <label for="westernfood">Western</label>
+
+    <input (change)="cuisineChoice($event.target.getAttribute('value'))" 
+      type="checkbox" id="asianfood" value="278,177,148"> 
+    <label for="asianfood">Asian/South Asian</label>
+    <!--sushi-->
+
+    <input (change)="cuisineChoice($event.target.getAttribute('value'))" 
+      type="checkbox" id="middleeasternfood" value="137,152">
+    <label for="middleeasternfood">Middle Eastern/African</label>
+
+    <input (change)="cuisineChoice($event.target.getAttribute('value'))" 
+      type="checkbox" id="mexfood" value="972,73">
+    <label for="mexfood">south american, mexiacn</label>
+
+
+    <input [(ngModel)]="allCuisines"
+      (change)="allCuisineToggle($event)"
+      type="checkbox" id="allfood"> 
+    <label for="allfood">idfk</label>
+</div>
+
+<div class="options distanceOption">
+
+    <h1>How far?</h1>
+    <div>
+      <input type="radio"
+        id="distance1"
+        (change)="distanceChoice(1500)"
+        name="distance">
+      <label for="distance1">on foot</label>
+    </div>
+
+    <div>
+      <input type="radio"
+        id="distance2"
+        (change)="distanceChoice(5000)"
+        name="distance">
+      <label for="distance2">short drive</label>
+    </div>
+    <div>
+      <input type="radio"
+        id="distance3"
+        (change)="distanceChoice(10000)"
+        name="distance">
+      <label for="distance3">okay drive</label>
+    </div>
+
+    <div>
+      <input type="radio"
+      id="distance4"
+      (change)="distanceChoice(20000)"
+      name="distance">
+      <label for="distance4">adventure time</label>
+    </div>
+</div>
+
+<div class="options priceOption">
+    <h1>Price?</h1>
+    <div>
+      <input type="radio"
+        id="price1"
+        (change)="priceChoice('asc')"
+        name="price">
+      <label for="price1">No Cash</label>
+    </div>
+    <div>
+      <input type="radio"
+        id="price2"
+        (change)="priceChoice()"
+        name="price">
+      <label for="price2">whatevz</label>
+    </div>
+    <div>
+      <input type="radio"
+        id="price3"
+        (change)="priceChoice('desc')"
+        name="price">
+      <label for="price3">rollin in dat dough</label>
+    </div>
+
+
+    <div>
+      <span class="button" (click)=getFood()>Pick for me !</span>
+    </div>
+
+</div>

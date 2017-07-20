@@ -1,0 +1,16 @@
+@import "~variables.scss";
+
+section{
+    background-color: $colorLight;
+    padding: 60px 0 30px 0;
+    text-align: center;
+}
+input{
+    padding: 10px;
+    width: 50%;
+    outline: none;
+    border: 2px solid $colorDark;
+    &:focus{
+        border: 2px solid $colorOne;
+    }
+}
