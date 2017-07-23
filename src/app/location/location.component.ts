@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, NgZone, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ElementRef, NgZone, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from "@agm/core";
 import {} from '@types/googlemaps'
@@ -10,7 +10,8 @@ import {} from '@types/googlemaps'
 })
 export class LocationComponent implements OnInit {
 
-@Output() myLatLongPlace = new EventEmitter();
+  @Input() locationNotFound;
+  @Output() myLatLongPlace = new EventEmitter();
 
   public myLat: number;
   public myLong: number;
@@ -27,6 +28,7 @@ export class LocationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.locationNotFound)
     //create search FormControl
     this.searchControl = new FormControl();
 

@@ -13,4 +13,7 @@
       [formControl]="searchControl"
       >
   </div>
+  <div class="notFound">
+    <p *ngIf="locationNotFound">Location not found. Please select from the drop down.</p>
+  </div>
 </section>

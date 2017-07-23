@@ -2,7 +2,7 @@
 
 section{
     background-color: $colorLight;
-    padding: 60px 0 30px 0;
+    padding-top: 60px;
     text-align: center;
 }
 input{
@@ -12,5 +12,14 @@ input{
     border: 2px solid $colorDark;
     &:focus{
         border: 2px solid $colorOne;
+    }
+}
+
+.notFound{
+    height: 35px;
+    padding-top: 10px;
+    p{
+        padding: 0;
+        margin: 0;
     }
 }

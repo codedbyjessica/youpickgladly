@@ -9,13 +9,15 @@ import { ZomatoService } from "./app.service";
 import { LocationComponent } from './location/location.component';
 import { FiltersComponent } from './filters/filters.component';
 import { HeaderComponent } from './header/header.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LocationComponent,
     FiltersComponent,
-    HeaderComponent
+    HeaderComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

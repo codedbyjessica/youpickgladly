@@ -8,9 +8,21 @@ import { ZomatoService } from "./app.service";
 })
 export class AppComponent implements OnInit{
 
-  public restaurants
+  public results
+  public firstRestaurant
+  public restaurants = []
+
+  public markers=[]
+
   public myLat
   public myLong
+
+  public midLat
+  public midLong
+
+  public restaurantLat
+  public restaurantLong
+
   public cuisineChoices = []
   public cuisineString
   public cuisine
@@ -18,6 +30,9 @@ export class AppComponent implements OnInit{
   public price
   public sort
 
+  public dataHere = false;
+  public noRestaurantsFound = false;
+  public locationNotFound = false;
   public allCuisines
 
   constructor(private api: ZomatoService) {}
@@ -47,7 +62,7 @@ export class AppComponent implements OnInit{
   }
 
   getFood(){
-
+    this.restaurants = []
     // cuisine array
     if(this.allCuisines === true){
       this.cuisine = '';
@@ -61,27 +76,85 @@ export class AppComponent implements OnInit{
       }
     }
 
-
-    // price
-    if(this.price){
-      this.sort = '&sort=cost&order='+ this.price
-    }else{this.sort="&sort=real_distance&order=desc"}
-
     if(this.myLat){
-      this.api.getData(this.myLat, this.myLong, this.cuisine, this.radius, this.sort).subscribe(res => {
-      console.log(res.restaurants);
-      this.restaurants = res.restaurants
-    });
+      this.locationNotFound = false;
+      this.api.getData(this.myLat, this.myLong, this.cuisine, this.radius).subscribe(res => {
+        this.dataHere = true;
+        this.results = res.restaurants
+        // console.log(this.results)
+        this.getRestaurants(this.results)
+      });
+
     } else{
+
       console.log("where u at")
+            this.locationNotFound = true;
+    }
+
+  }
+
+  getRestaurants(results){
+
+
+    results.forEach(restaurant => {
+      if(!this.price){
+        this.restaurants.push(restaurant)
+      }
+      else if(restaurant.restaurant.price_range <= this.price){
+        this.restaurants.push(restaurant)
+      }
+    });
+    console.log(this.restaurants)
+
+    if(this.restaurants.length <= 0){
+      this.noRestaurantsFound = true
+      console.log(this.dataHere, this.noRestaurantsFound)
+    }else{
+      this.firstRestaurant = this.restaurants[0].restaurant
+      this.restaurantLat = Number(this.firstRestaurant.location.latitude)
+      this.restaurantLong = Number(this.firstRestaurant.location.longitude)
+
+      this.midLat = (this.myLat + this.restaurantLat)/2;
+      this.midLong = (this.myLong + this.restaurantLong)/2;
     }
   }
 
-  
+  getRestaurantLocation(i){
+    this.restaurants.splice(0, 0, this.restaurants.splice(i, 1)[0]).join()
+    console.log(i)
+    console.log(this.restaurants)
+      this.firstRestaurant = this.restaurants[0].restaurant
+      this.restaurantLat = Number(this.firstRestaurant.location.latitude)
+      this.restaurantLong = Number(this.firstRestaurant.location.longitude)
+
+      this.midLat = (this.myLat + this.restaurantLat)/2;
+      this.midLong = (this.myLong + this.restaurantLong)/2;
+
+  }
+
+  // getRestaurantLocation(location){
+  //   console.log(location)
+
+  //   this.restaurantLat = Number(location.latitude)
+  //   this.restaurantLong = Number(location.longitude)
+  //   console.log(this.restaurantLat)
+
+  //   this.midLat = (this.myLat + this.restaurantLat)/2;
+  //   this.midLong = (this.myLong + this.restaurantLong)/2;
+  // }
+
+  moveToFirst(from, to){
+
+  }
+
+
+
+
 
   ngOnInit(){
-    
+
   }
+
 
 
 }

@@ -1,6 +1,11 @@
 <section class="landing">
   <app-header></app-header>
-  <app-location (myLatLongPlace)="myLocation($event)"></app-location>
+  <app-location 
+    (myLatLongPlace)="myLocation($event)" 
+    [locationNotFound]="locationNotFound"
+  ></app-location>
+
+
   <app-filters 
     (go)="getFood()"
     (cuisine)="myCuisine($event)"
@@ -10,13 +15,45 @@
   </app-filters>
 </section>
 
-<section class="results">
-  How about
-  <div class="result"
-  *ngFor="let restaurant of restaurants">
-    <h2>{{ restaurant.restaurant.name }}</h2>
-    ({{ restaurant.restaurant.cuisines}})
-    <p>Price: {{ restaurant.restaurant.price_range }} Ratings: {{ restaurant.restaurant.user_rating.aggregate_rating }}</p>
+
+
+<section class="results"  >
+  <h1 *ngIf="dataHere && noRestaurantsFound">Sorry, no results found</h1>
+  
+  <div class="resultFirst" *ngIf="dataHere && !noRestaurantsFound">
+    <h1>How about</h1>
+    <div class="resultFirstWrapper">
+    <div class="resultFirstInfo">
+      <h2>{{ firstRestaurant.name }}</h2>
+      ({{ firstRestaurant.cuisines}})
+      <p>{{ firstRestaurant.location.address }}</p>
+      <p><img src="{{ firstRestaurant.thumb }}"></p>
+      <p>Price: {{ firstRestaurant.price_range }} 
+        Ratings: {{ firstRestaurant.user_rating.aggregate_rating }}</p>
+    </div>
+    <div class="resultsMap" id="resultsMap">
+      <app-map *ngIf="dataHere"
+        [myLat]="myLat" 
+        [myLong]="myLong"
+        [restaurantLat]="restaurantLat"
+        [restaurantLong]="restaurantLong"
+        [latitude]="midLat"
+        [longitude]="midLong">
+      </app-map>
+    </div>
+    </div>
+  </div>
+
+  <div class="resultRest">
+    <div class="result"
+    *ngFor="let restaurant of restaurants; let i=index ">
+      <h2>{{ restaurant.restaurant.name }}</h2>
+      ({{ restaurant.restaurant.cuisines}})
+      <p>{{ restaurant.restaurant.location.address }}</p>
+      <p><img src="{{ restaurant.restaurant.thumb }}"></p>
+      <p>Price: {{ restaurant.restaurant.price_range }} Ratings: {{ restaurant.restaurant.user_rating.aggregate_rating }}</p>
+      <a class="button" (click)="getRestaurantLocation(i)">Let's go here!</a>
+    </div>
   </div>
 </section>
 

@@ -1,0 +1,19 @@
+    <div>
+      <agm-map 
+        [latitude]="latitude" 
+        [longitude]="longitude" 
+        [scrollwheel]="true" 
+        [zoom]="zoom">
+
+        <agm-marker 
+          [latitude]="myLat" 
+          [longitude]="myLong">
+        </agm-marker>
+
+        <agm-marker 
+          [latitude]="restaurantLat" 
+          [longitude]="restaurantLong">
+        </agm-marker>
+        
+      </agm-map>
+    </div>

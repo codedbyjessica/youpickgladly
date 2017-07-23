@@ -1,15 +1,45 @@
 @import "~variables.scss";
 
+img{
+    width: 100%;
+}
+
 .landing{
-    min-height: 100vh;
     background: $colorLight;
 }
 
-.results{
+.resultRest{
     display: flex;
     flex-wrap: wrap;
     h2{
         display: inline;
+    }
+}
+
+.resultFirstWrapper{
+    display: flex;
+    .resultFirstInfo{
+        width: 40%;
+    }
+    .resultsMap{
+        width: 60%;
+        padding: 20px 0 0 20px;
+    }
+}
+
+
+.resultFirst{
+    border: 1px solid black;
+    width: calc(100% - 40px);
+    padding: 10px;
+    margin: 20px;
+    h1{
+        font-size: 8rem;
+        font-family: 'Dancing Script', cursive;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+        text-align: center;
     }
 }
 
@@ -19,6 +49,6 @@
     padding: 10px;
     margin: 20px;
     &:first-of-type{
-        width: calc(100% - 42px);
+        display: none;
     }
 }
