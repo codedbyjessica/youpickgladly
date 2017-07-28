@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { ZomatoService } from "./app.service";
@@ -10,6 +10,8 @@ import { LocationComponent } from './location/location.component';
 import { FiltersComponent } from './filters/filters.component';
 import { HeaderComponent } from './header/header.component';
 import { MapComponent } from './map/map.component';
+import { DirectionsComponent } from './directions/directions.component';
+import { DirectionsMapDirective } from "./directions/directions.directive";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { MapComponent } from './map/map.component';
     LocationComponent,
     FiltersComponent,
     HeaderComponent,
-    MapComponent
+    MapComponent,
+    DirectionsComponent,
+    DirectionsMapDirective
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,7 @@ import { MapComponent } from './map/map.component';
       libraries: ['places']
     })
   ],
-  providers: [ZomatoService],
+  providers: [ZomatoService, GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

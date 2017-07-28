@@ -5,6 +5,7 @@
     [locationNotFound]="locationNotFound"
   ></app-location>
 
+    
 
   <app-filters 
     (go)="getFood()"
@@ -17,7 +18,7 @@
 
 
 
-<section class="results"  >
+<section class="results">
   <h1 *ngIf="dataHere && noRestaurantsFound">Sorry, no results found</h1>
   
   <div class="resultFirst" *ngIf="dataHere && !noRestaurantsFound">
@@ -30,6 +31,10 @@
       <p><img src="{{ firstRestaurant.thumb }}"></p>
       <p>Price: {{ firstRestaurant.price_range }} 
         Ratings: {{ firstRestaurant.user_rating.aggregate_rating }}</p>
+    
+      <app-directions [origin]="origin" [destination]="destination"></app-directions>
+    
+    
     </div>
     <div class="resultsMap" id="resultsMap">
       <app-map *ngIf="dataHere"

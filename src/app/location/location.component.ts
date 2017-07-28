@@ -66,13 +66,4 @@ export class LocationComponent implements OnInit {
     });
   }
 
-  // private setCurrentPosition() {
-  //   if ("geolocation" in navigator) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       this.myLat = position.coords.myLat;
-  //       this.myLong = position.coords.myLong;
-  //       this.zoom = 12;
-  //     });
-  //   }
-  // }
 }

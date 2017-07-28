@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ZomatoService {
@@ -15,7 +15,7 @@ private apiUrl
 
   getData(lat, long, cuisine, radius):Observable<any> {
     console.log(cuisine)
-    this.apiUrl = 'https://developers.zomato.com/api/v2.1/search?' + "lat=" + lat + "&lon=" + long + cuisine + radius;
+    this.apiUrl = 'https://developers.zomato.com/api/v2.1/search?' + 'lat=' + lat + '&lon=' + long + cuisine + radius;
     return this.http.get(this.apiUrl, {
         headers: new Headers(
             {
@@ -24,6 +24,14 @@ private apiUrl
             }
         )
     })
+    .map(response => response.json())
+  }
+
+
+  getDirections(myLat, myLong, restaurantLat, restaurantLong):Observable<any> {
+    const googleKey = 'AIzaSyAEIes2MFy1zVNr1RIQAnTGnb9H79TfCwk';
+    let directionsUrl = 'https://maps.googleapis.com/maps/api/directions/json?origin=' + myLat + ',' +  myLong + '&destination=' + restaurantLat + ',' + restaurantLong +'&key=' + googleKey;
+    return this.http.get(directionsUrl, {})
     .map(response => response.json())
   }
 

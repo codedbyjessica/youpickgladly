@@ -23,6 +23,9 @@ export class AppComponent implements OnInit{
   public restaurantLat
   public restaurantLong
 
+  public origin
+  public destination
+
   public cuisineChoices = []
   public cuisineString
   public cuisine
@@ -38,14 +41,13 @@ export class AppComponent implements OnInit{
   constructor(private api: ZomatoService) {}
 
   myLocation(location){
-    console.log(location)
     this.myLat = location.lat
     this.myLong = location.long
+    this.origin  = { latitude: this.myLat, longitude: this.myLong };
   }
 
   selectAllCuisines(isSelected){
     this.allCuisines = isSelected
-    console.log(this.allCuisines)
   }
 
   myCuisine(cuisineArray){
@@ -54,7 +56,6 @@ export class AppComponent implements OnInit{
 
   myPrice(price){
     this.price = price
-    console.log(price)
   }
 
   myRadius(radius){
@@ -66,7 +67,6 @@ export class AppComponent implements OnInit{
     // cuisine array
     if(this.allCuisines === true){
       this.cuisine = '';
-      console.log(this.cuisine)
     }else{
       if (this.cuisineChoices.length < 1){
         this.cuisine = '';
@@ -86,7 +86,6 @@ export class AppComponent implements OnInit{
       });
 
     } else{
-
       console.log("where u at")
             this.locationNotFound = true;
     }
@@ -110,12 +109,7 @@ export class AppComponent implements OnInit{
       this.noRestaurantsFound = true
       console.log(this.dataHere, this.noRestaurantsFound)
     }else{
-      this.firstRestaurant = this.restaurants[0].restaurant
-      this.restaurantLat = Number(this.firstRestaurant.location.latitude)
-      this.restaurantLong = Number(this.firstRestaurant.location.longitude)
-
-      this.midLat = (this.myLat + this.restaurantLat)/2;
-      this.midLong = (this.myLong + this.restaurantLong)/2;
+      this.getRestaurantData();
     }
   }
 
@@ -123,12 +117,7 @@ export class AppComponent implements OnInit{
     this.restaurants.splice(0, 0, this.restaurants.splice(i, 1)[0]).join()
     console.log(i)
     console.log(this.restaurants)
-      this.firstRestaurant = this.restaurants[0].restaurant
-      this.restaurantLat = Number(this.firstRestaurant.location.latitude)
-      this.restaurantLong = Number(this.firstRestaurant.location.longitude)
-
-      this.midLat = (this.myLat + this.restaurantLat)/2;
-      this.midLong = (this.myLong + this.restaurantLong)/2;
+      this.getRestaurantData();
 
   }
 
@@ -143,8 +132,16 @@ export class AppComponent implements OnInit{
   //   this.midLong = (this.myLong + this.restaurantLong)/2;
   // }
 
-  moveToFirst(from, to){
+  getRestaurantData(){
+      this.firstRestaurant = this.restaurants[0].restaurant
+      this.restaurantLat = Number(this.firstRestaurant.location.latitude)
+      this.restaurantLong = Number(this.firstRestaurant.location.longitude)
 
+      this.destination  = { latitude: this.restaurantLat, longitude: this.restaurantLong };
+
+
+      this.midLat = (this.myLat + this.restaurantLat)/2;
+      this.midLong = (this.myLong + this.restaurantLong)/2;
   }
 
 

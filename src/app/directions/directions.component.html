@@ -1,0 +1,16 @@
+<agm-map>
+    <agm-map-directions 
+        [origin]="origin" 
+        [destination]="destination"
+        (directionInfo)="getDirectionsInfo($event)">
+    </agm-map-directions>
+</agm-map>
+
+<button (click)="showDirections()">show directions</button>
+
+<div *ngIf="directions">
+    <!--<p> from {{ legs.start_address}} </p>-->
+    <!--<p> to {{ legs.end_address }}</p>-->
+    <p> distance: {{ legs.distance.text }} duration: {{ legs.duration.text }}</p>
+    <p *ngFor="let step of steps" [innerHTML]= "step.instructions"> </p>
+</div>
