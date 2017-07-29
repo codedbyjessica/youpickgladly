@@ -2,15 +2,24 @@
     <agm-map-directions 
         [origin]="origin" 
         [destination]="destination"
+        [travelMode]="travelMode"
         (directionInfo)="getDirectionsInfo($event)">
     </agm-map-directions>
 </agm-map>
 
-<button (click)="showDirections()">show directions</button>
+<span class="button" (click)="showDirections()" *ngIf="!directions">Show Directions</span>
+<span class="button" (click)="showDirections()" *ngIf="directions">Hide Directions</span>
 
 <div *ngIf="directions">
+
+<input id="walking" type="radio" [(ngModel)]="travelMode" value="WALKING" name="travelMode"/> 
+<label for="walking" class="buttonSmall"> Walking</label>
+<input id="driving" type="radio" [(ngModel)]="travelMode" value="DRIVING" name="travelMode"/>
+<label for="driving" class="buttonSmall"> Driving</label>
+
+    {{ travelMode }} DIRECTIONS
     <!--<p> from {{ legs.start_address}} </p>-->
     <!--<p> to {{ legs.end_address }}</p>-->
-    <p> distance: {{ legs.distance.text }} duration: {{ legs.duration.text }}</p>
+    <p> Distance: {{ legs.distance.text }} | Duration: {{ legs.duration.text }}</p>
     <p *ngFor="let step of steps" [innerHTML]= "step.instructions"> </p>
 </div>

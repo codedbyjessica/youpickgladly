@@ -12,6 +12,7 @@ export class DirectionsMapDirective {
 
   @Input() origin;
   @Input() destination;
+  @Input() travelMode;
 
   public actualDirections;
 
@@ -33,7 +34,7 @@ export class DirectionsMapDirective {
         destination: {lat: this.destination.latitude, lng: this.destination.longitude},
         waypoints: [],
         optimizeWaypoints: true,
-        travelMode: 'WALKING'
+        travelMode: this.travelMode
     }, (response, status) => {
             if (status === 'OK') {
                 this.actualDirections = response.routes[0].legs[0];

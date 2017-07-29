@@ -1,0 +1,35 @@
+@import "~variables.scss";
+
+.button{
+    display: inline-block;
+    background-color: $colorTwo;
+    color: $colorLightest;
+    border: 2px solid $colorDark;
+    &:hover{
+        background-color: $colorDark;
+    }
+}
+
+.buttonSmall{
+    display: inline-block;
+    background-color: $colorThree;
+    color: $colorLightest;
+    border: 2px solid $colorDark;
+    width: calc(50% - 30px);
+    &:hover{
+        background-color: $colorDark;
+    }
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+input[type="radio"]:checked+label{ 
+    display: inline-block;
+    background-color: grey;
+    pointer-events: none;
+    &:hover{
+        background-color: grey;
+    }
+} 

@@ -66,17 +66,9 @@ input{
 }
 
 .button{
-    display: inline-block;
     background-color: $colorTwo;
     color: $colorLightest;
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.4rem;
-    font-weight: bold;
-    margin: 10px;
     border: 2px solid $colorDark;
-    padding: 10px;
-    width: 90%;
-    cursor: pointer;
     &:hover{
         background-color: $colorDark;
     }

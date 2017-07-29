@@ -30,6 +30,7 @@ export class AppComponent implements OnInit{
   public cuisineString
   public cuisine
   public radius = "&radius=10000"
+  public passRadius;
   public price
   public sort
 
@@ -37,6 +38,8 @@ export class AppComponent implements OnInit{
   public noRestaurantsFound = false;
   public locationNotFound = false;
   public allCuisines
+
+  public showThumb= true;
 
   constructor(private api: ZomatoService) {}
 
@@ -60,6 +63,7 @@ export class AppComponent implements OnInit{
 
   myRadius(radius){
     this.radius = "&radius=" + radius
+    this.passRadius = radius;
   }
 
   getFood(){
@@ -83,6 +87,7 @@ export class AppComponent implements OnInit{
         this.results = res.restaurants
         // console.log(this.results)
         this.getRestaurants(this.results)
+        
       });
 
     } else{
@@ -94,7 +99,7 @@ export class AppComponent implements OnInit{
 
   getRestaurants(results){
 
-
+      console.log(this.restaurants.length <= 0)
     results.forEach(restaurant => {
       if(!this.price){
         this.restaurants.push(restaurant)
@@ -103,49 +108,48 @@ export class AppComponent implements OnInit{
         this.restaurants.push(restaurant)
       }
     });
-    console.log(this.restaurants)
+    // console.log(this.restaurants)
 
     if(this.restaurants.length <= 0){
       this.noRestaurantsFound = true
-      console.log(this.dataHere, this.noRestaurantsFound)
+      // console.log(this.dataHere, this.noRestaurantsFound)
     }else{
+      console.log("shouldbefalse")
       this.getRestaurantData();
+      this.noRestaurantsFound = false;
     }
   }
 
+  // bring to first
   getRestaurantLocation(i){
     this.restaurants.splice(0, 0, this.restaurants.splice(i, 1)[0]).join()
-    console.log(i)
-    console.log(this.restaurants)
+    // console.log(i)
+    // console.log(this.restaurants)
       this.getRestaurantData();
 
   }
 
-  // getRestaurantLocation(location){
-  //   console.log(location)
-
-  //   this.restaurantLat = Number(location.latitude)
-  //   this.restaurantLong = Number(location.longitude)
-  //   console.log(this.restaurantLat)
-
-  //   this.midLat = (this.myLat + this.restaurantLat)/2;
-  //   this.midLong = (this.myLong + this.restaurantLong)/2;
-  // }
 
   getRestaurantData(){
+      this.restaurants.forEach(place => {
+        if(place.restaurant.thumb === ''){
+          place.restaurant.thumb = 'http://via.placeholder.com/200x100;'
+        }
+      });
       this.firstRestaurant = this.restaurants[0].restaurant
       this.restaurantLat = Number(this.firstRestaurant.location.latitude)
       this.restaurantLong = Number(this.firstRestaurant.location.longitude)
 
       this.destination  = { latitude: this.restaurantLat, longitude: this.restaurantLong };
 
-
       this.midLat = (this.myLat + this.restaurantLat)/2;
       this.midLong = (this.myLong + this.restaurantLong)/2;
   }
 
 
-
+emitShowDirections(response){
+  this.showThumb = !response;
+}
 
 
   ngOnInit(){

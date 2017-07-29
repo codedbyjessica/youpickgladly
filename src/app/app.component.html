@@ -28,11 +28,11 @@
       <h2>{{ firstRestaurant.name }}</h2>
       ({{ firstRestaurant.cuisines}})
       <p>{{ firstRestaurant.location.address }}</p>
-      <p><img src="{{ firstRestaurant.thumb }}"></p>
+      <p *ngIf="showThumb"><img src="{{ firstRestaurant.thumb }}"></p>
       <p>Price: {{ firstRestaurant.price_range }} 
         Ratings: {{ firstRestaurant.user_rating.aggregate_rating }}</p>
     
-      <app-directions [origin]="origin" [destination]="destination"></app-directions>
+      <app-directions (emitShowDirections)="emitShowDirections($event)" [passRadius]="passRadius" [origin]="origin" [destination]="destination"></app-directions>
     
     
     </div>
@@ -53,7 +53,7 @@
     <div class="result"
     *ngFor="let restaurant of restaurants; let i=index ">
       <h2>{{ restaurant.restaurant.name }}</h2>
-      ({{ restaurant.restaurant.cuisines}})
+      <p>({{ restaurant.restaurant.cuisines}})</p>
       <p>{{ restaurant.restaurant.location.address }}</p>
       <p><img src="{{ restaurant.restaurant.thumb }}"></p>
       <p>Price: {{ restaurant.restaurant.price_range }} Ratings: {{ restaurant.restaurant.user_rating.aggregate_rating }}</p>
