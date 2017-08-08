@@ -133,7 +133,7 @@ export class AppComponent implements OnInit{
   getRestaurantData(){
       this.restaurants.forEach(place => {
         if(place.restaurant.thumb === ''){
-          place.restaurant.thumb = 'http://via.placeholder.com/200x100;'
+          place.restaurant.thumb = '../assets/otherthumb.png'
         }
       });
       this.firstRestaurant = this.restaurants[0].restaurant

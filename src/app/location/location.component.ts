@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, NgZone, ViewChild, Output, EventEmitter,
 import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from "@agm/core";
 import {} from '@types/googlemaps'
+declare var google: any;
 
 @Component({
   selector: 'app-location',
@@ -18,6 +19,9 @@ export class LocationComponent implements OnInit {
   public myLocation;
   public searchControl: FormControl;
   public zoom: number;
+  public latlong;
+  public locationType = "setLocation";
+  public inputLatHere = false;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -28,12 +32,13 @@ export class LocationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    
     console.log(this.locationNotFound)
     //create search FormControl
     this.searchControl = new FormControl();
 
     //set current position
-    // this.setCurrentPosition();
+    this.setCurrentPosition();
 
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
@@ -60,10 +65,28 @@ export class LocationComponent implements OnInit {
           };
           // this.zoom = 12;
           this.myLatLongPlace.emit(this.myLocation)
-
+          this.inputLatHere = true;
         });
       });
     });
   }
+
+   setCurrentPosition() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.myLat = position.coords.latitude;
+        this.myLong = position.coords.longitude;
+        // this.zoom = 12;
+        this.latlong = {
+            lat: this.myLat, 
+            long: this.myLong
+          };
+          // this.zoom = 12;
+          this.myLatLongPlace.emit(this.latlong)
+        console.log(position)
+      });
+    }
+  }
+
 
 }

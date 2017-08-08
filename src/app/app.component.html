@@ -1,10 +1,17 @@
-<section class="landing">
-  <app-header></app-header>
-  <app-location 
-    (myLatLongPlace)="myLocation($event)" 
-    [locationNotFound]="locationNotFound"
-  ></app-location>
+<div class="topBorder"></div>
+<div class="botBorder"></div>
+<div class="rightBorder"></div>
+<div class="leftBorder"></div>
 
+
+<section class="landing">
+  <header>
+    <app-header></app-header>
+    <app-location 
+      (myLatLongPlace)="myLocation($event)" 
+      [locationNotFound]="locationNotFound"
+    ></app-location>
+  </header>
     
 
   <app-filters 
@@ -21,21 +28,22 @@
 <section class="results">
   <h1 *ngIf="dataHere && noRestaurantsFound">Sorry, no results found</h1>
   
+  <!--<div class="resultFirst">-->
   <div class="resultFirst" *ngIf="dataHere && !noRestaurantsFound">
-    <h1>How about</h1>
+    <div class="howAboutLine"><h1>How about</h1></div>
     <div class="resultFirstWrapper">
     <div class="resultFirstInfo">
       <h2>{{ firstRestaurant.name }}</h2>
-      ({{ firstRestaurant.cuisines}})
+      <p>({{ firstRestaurant.cuisines}})</p>
       <p>{{ firstRestaurant.location.address }}</p>
-      <p *ngIf="showThumb"><img src="{{ firstRestaurant.thumb }}"></p>
+      <div *ngIf="showThumb" class="firstImgContainer" [ngStyle]="{'background-image' : 'url(' + firstRestaurant.thumb + ')'}"></div>
       <p>Price: {{ firstRestaurant.price_range }} 
         Ratings: {{ firstRestaurant.user_rating.aggregate_rating }}</p>
     
       <app-directions (emitShowDirections)="emitShowDirections($event)" [passRadius]="passRadius" [origin]="origin" [destination]="destination"></app-directions>
-    
-    
+ 
     </div>
+
     <div class="resultsMap" id="resultsMap">
       <app-map *ngIf="dataHere"
         [myLat]="myLat" 
@@ -48,16 +56,22 @@
     </div>
     </div>
   </div>
+    
+  <div class="howAboutBorder"></div>  
 
   <div class="resultRest">
     <div class="result"
     *ngFor="let restaurant of restaurants; let i=index ">
-      <h2>{{ restaurant.restaurant.name }}</h2>
-      <p>({{ restaurant.restaurant.cuisines}})</p>
-      <p>{{ restaurant.restaurant.location.address }}</p>
-      <p><img src="{{ restaurant.restaurant.thumb }}"></p>
-      <p>Price: {{ restaurant.restaurant.price_range }} Ratings: {{ restaurant.restaurant.user_rating.aggregate_rating }}</p>
-      <a class="button" (click)="getRestaurantLocation(i)">Let's go here!</a>
+      <div class="resultRestInfo">
+        <h2>{{ restaurant.restaurant.name }}</h2>
+        <p>({{ restaurant.restaurant.cuisines}})</p>
+        <p>{{ restaurant.restaurant.location.address }}</p>
+      </div>
+      <div class="imgContainer" [ngStyle]="{'background-image' : 'url(' + restaurant.restaurant.thumb + ')'}"></div>
+      <div class="resultRestInfo">
+        <p>Price: {{ restaurant.restaurant.price_range }} Ratings: {{ restaurant.restaurant.user_rating.aggregate_rating }}</p>
+        <a class="buttonSmall" (click)="getRestaurantLocation(i)">Let's go here!</a>
+      </div>
     </div>
   </div>
 </section>

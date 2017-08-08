@@ -1,23 +1,21 @@
 @import "~variables.scss";
 
-.button{
-    display: inline-block;
-    background-color: $colorTwo;
-    color: $colorLightest;
-    border: 2px solid $colorDark;
-    &:hover{
-        background-color: $colorDark;
+    .button{
+        background-color: $colorFour;
+        border-color: $colorFourBorder;
+        &:hover{
+            background-color: $colorFourBorder;
+        }
     }
-}
 
 .buttonSmall{
     display: inline-block;
     background-color: $colorThree;
     color: $colorLightest;
-    border: 2px solid $colorDark;
+    border: 2px solid $colorThreeBorder;
     width: calc(50% - 30px);
     &:hover{
-        background-color: $colorDark;
+        background-color: $colorThreeBorder;
     }
 }
 
@@ -27,9 +25,7 @@ input[type="radio"]{
 
 input[type="radio"]:checked+label{ 
     display: inline-block;
-    background-color: grey;
+    color: $colorThreeBorder;
+    background-color: $colorLightest;
     pointer-events: none;
-    &:hover{
-        background-color: grey;
-    }
 } 

@@ -1,11 +1,34 @@
 @import "~variables.scss";
 
-img{
+
+.firstImgContainer{
+    height:150px;
     width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
+.imgContainer{
+    height:150px;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 .landing{
-    background: $colorLight;
+    background: $colorLightest;
+}
+
+header{
+    display: flex;
+    flex-wrap: wrap;
+    app-header{
+        width: 50%;
+    }
+    app-location{
+        width: 50%;
+    }
 }
 
 .resultRest{
@@ -23,32 +46,153 @@ img{
     }
     .resultsMap{
         width: 60%;
-        padding: 20px 0 0 20px;
+        padding: 20px 0 20px 20px;
     }
 }
 
-
 .resultFirst{
-    border: 1px solid black;
-    width: calc(100% - 40px);
-    padding: 10px;
-    margin: 20px;
+    width: 100%;
     h1{
-        font-size: 8rem;
-        font-family: 'Dancing Script', cursive;
-        font-weight: bold;
+        color :$colorLightest;
+        font-size: 5rem;
+        font-family: 'Droid Serif', serif;
+        font-style: italic;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        font-weight: normal;
         margin: 0;
-        padding: 0;
-        text-align: center;
     }
+    .howAboutLine{
+        background: $colorOne;
+        padding: 40px 20px;
+    }
+    .resultFirstInfo{
+        padding: 20px;
+    }
+}
+
+.howAboutBorder{
+    background: $colorOne;
+    height: 40px;
+    width: 100%;
 }
 
 .result{
-    width: calc(33.33% - 42px);
-    border: 1px solid black;
-    padding: 10px;
-    margin: 20px;
+    width: 33.33%;
+    .resultRestInfo{
+        padding: 20px;
+        &:first-of-type{
+            height: 150px;
+            padding-bottom: 0;
+        }
+        &:last-of-type{
+            padding-top: 0;
+        }
+    }
     &:first-of-type{
         display: none;
+    }
+    .buttonSmall{
+        background-color: $colorOne;
+        border-color: $colorOneBorder;
+        &:hover{
+            background-color: $colorOneBorder;
+        }
+    }
+    &:nth-of-type(6n+1){
+        background-color: $colorLightest;
+    }
+    &:nth-of-type(6n+2){
+        background-color: $colorThree;
+    }
+    &:nth-of-type(6n+3){
+        background-color: $colorLightest;
+    }
+    &:nth-of-type(6n+4){
+        background-color: $colorTwo;
+    }
+    &:nth-of-type(6n+5){
+        background-color: $colorLightest;
+    }
+    &:nth-of-type(6n+6){
+        background-color: $colorFour;
+    }
+}
+
+@media (max-width: $mediumWidth) {
+    .result{
+        width: 50%;
+        .resultRestInfo{
+            padding: 20px;
+            &:first-of-type{
+                height: 150px;
+                padding-bottom: 0;
+            }
+            &:last-of-type{
+                padding-top: 0;
+            }
+        }
+        &:first-of-type{
+            display: none;
+        }
+        .buttonSmall{
+            background-color: $colorOne;
+            border-color: $colorOneBorder;
+            &:hover{
+                background-color: $colorOneBorder;
+            }
+        }
+        &:nth-of-type(4n+1){
+            background-color: $colorThree;
+        }
+        &:nth-of-type(4n+2){
+            background-color: $colorLightest;
+        }
+        &:nth-of-type(4n+3){
+            background-color: $colorTwo;
+        }
+        &:nth-of-type(4n+4){
+            background-color: $colorFour;
+        }
+    }
+}
+
+@media (max-width: $smallWidth) {
+    .resultFirstWrapper{
+        display: flex;
+        flex-wrap: wrap;
+        .resultFirstInfo{
+            width: 100%;
+        }
+        .resultsMap{
+            width: 100%;
+            padding: 20px;
+        }
+    }
+    header{
+        app-header{
+            width: 100%;
+        }
+        app-location{
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: $mobileWidth) {
+    .result{
+        width: 100%;
+        .resultRestInfo{
+            &:first-of-type{
+                height: 150px;
+            }
+            &:last-of-type{
+                text-align: center;
+            }
+        }
+        &:first-of-type{
+            display: none;
+        }
+
     }
 }

@@ -1,9 +1,13 @@
 @import "~variables.scss";
 
 section{
-    background-color: $colorLight;
-    padding-top: 60px;
+    background-color: $colorLightest;
     text-align: center;
+    padding-top: 30px;
+    background-image: url('../../assets/bg1.png');
+    background-position: top right;
+    background-size: 60%;
+    background-repeat: no-repeat;
 }
 input{
     padding: 10px;
@@ -11,15 +15,46 @@ input{
     outline: none;
     border: 2px solid $colorDark;
     &:focus{
-        border: 2px solid $colorOne;
+        border: 2px solid $colorOneBorder;
     }
 }
-
 .notFound{
-    height: 35px;
+    height: 30px;
     padding-top: 10px;
     p{
         padding: 0;
         margin: 0;
     }
 }
+
+.buttonSmall{
+    display: inline-block;
+    background-color: $colorOne;
+    color: $colorLightest;
+    border: 2px solid $colorOneBorder;
+    &:hover{
+        background-color: $colorOneBorder;
+    }
+}
+
+.buttonText{
+    width: 80%;
+    background-color: $colorLightest;
+    color: $colorDark;
+    &:hover{
+        background-color: $colorLightest;
+    }
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+
+input[type="radio"]:checked+label{ 
+    display: inline-block;
+    background-color: $colorLightest;
+    color: $colorOneBorder;
+    pointer-events: none;
+
+} 

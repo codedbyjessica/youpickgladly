@@ -1,5 +1,8 @@
-<div class="options cuisineOptions">
-  <h1>Whachu feelin?</h1>
+<div class="optionsBox cuisineOptions">
+  <div class="heading">
+    Whachu feelin?
+  </div>
+  <div class="options">
     <input (change)="cuisineChoice($event.target.getAttribute('value'))" 
       type="checkbox" id="fastfood" value="40">
     <label for="fastfood">Fast Food</label>
@@ -26,16 +29,19 @@
       type="checkbox" id="mexfood" value="972,73">
     <label for="mexfood">south american, mexiacn</label>
 
-
     <input [(ngModel)]="allCuisines"
       (change)="allCuisineToggle($event)"
       type="checkbox" id="allfood"> 
     <label for="allfood">idfk</label>
+  </div>
+
 </div>
 
-<div class="options distanceOption">
-
-    <h1>How far?</h1>
+<div class="optionsBox distanceOption">
+  <div class="heading">
+    How far?
+  </div>
+  <div class="options">
     <div>
       <input type="radio"
         id="distance1"
@@ -43,7 +49,6 @@
         name="distance">
       <label for="distance1">on foot</label>
     </div>
-
     <div>
       <input type="radio"
         id="distance2"
@@ -58,7 +63,6 @@
         name="distance">
       <label for="distance3">okay drive</label>
     </div>
-
     <div>
       <input type="radio"
       id="distance4"
@@ -66,10 +70,14 @@
       name="distance">
       <label for="distance4">adventure time</label>
     </div>
+  </div>
 </div>
 
-<div class="options priceOption">
-    <h1>Max price?</h1>
+<div class="optionsBox priceOption">
+  <div class="heading">
+    Max price?
+  </div>
+  <div class="options">
     <div>
       <input type="radio"
         id="price1"
@@ -91,10 +99,8 @@
         name="price">
       <label for="price3">rollin in dat dough</label>
     </div>
-
-
     <div>
       <span class="button" (click)=getFood()>Pick for me !</span>
     </div>
-
+  </div>
 </div>

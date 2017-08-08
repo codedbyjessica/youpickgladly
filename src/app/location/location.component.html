@@ -1,18 +1,33 @@
 <section>
-  <div class="form-group">
-    <label for="location">Your Location</label>
-    <input 
+
+  <!--<label for="setLocation" (click) ="setCurrentPosition()">detect</label>
+  <input type="checkbox" id="setLocation">-->
+
+<div>
+  <input id="setLocation" type="radio" [(ngModel)]="locationType" value="setLocation" name="travelMode"/> 
+  <label for="setLocation" class="buttonSmall"> Use My Location</label>
+</div>
+<div [hidden]="locationType === 'manualLocation'">
+  <input id="manualLocation" type="radio" [(ngModel)]="locationType" value="manualLocation" name="travelMode"/>
+  <label for="manualLocation" class="buttonSmall"> Manual Input</label>
+</div>
+
+  
+  <div class="form-group" [hidden]="locationType !== 'manualLocation'">
+    <input
       id="location"
       placeholder="search for location" 
       autocorrect="off" 
       autocapitalize="off" 
       spellcheck="off" 
       type="text" 
-      class="form-control" 
+      class="form-control buttonSmall buttonText" 
       #search 
       [formControl]="searchControl"
       >
+    <i *ngIf="inputLatHere" class="fa fa-check" aria-hidden="true"></i>
   </div>
+  
   <div class="notFound">
     <p *ngIf="locationNotFound">Location not found. Please select from the drop down.</p>
   </div>
