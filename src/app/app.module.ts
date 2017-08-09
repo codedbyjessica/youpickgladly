@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { MapComponent } from './map/map.component';
 import { DirectionsComponent } from './directions/directions.component';
 import { DirectionsMapDirective } from "./directions/directions.directive";
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DirectionsMapDirective } from "./directions/directions.directive";
     HeaderComponent,
     MapComponent,
     DirectionsComponent,
-    DirectionsMapDirective
+    DirectionsMapDirective,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

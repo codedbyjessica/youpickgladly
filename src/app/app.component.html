@@ -26,7 +26,7 @@
 
 
 <section class="results">
-  <h1 *ngIf="dataHere && noRestaurantsFound">Sorry, no results found</h1>
+  <div class="sorryLine" *ngIf="dataHere && noRestaurantsFound"><h1>Sorry, no results found</h1></div>
   
   <!--<div class="resultFirst">-->
   <div class="resultFirst" *ngIf="dataHere && !noRestaurantsFound">
@@ -58,6 +58,8 @@
   </div>
     
   <div class="howAboutBorder"></div>  
+
+  <app-loader *ngIf="showLoader"></app-loader>
 
   <div class="resultRest">
     <div class="result"

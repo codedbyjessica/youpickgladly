@@ -1,12 +1,12 @@
 @import "~variables.scss";
 
-    .button{
-        background-color: $colorFour;
-        border-color: $colorFourBorder;
-        &:hover{
-            background-color: $colorFourBorder;
-        }
+.button{
+    background-color: $colorFour;
+    border-color: $colorFourBorder;
+    &:hover{
+        background-color: $colorFourBorder;
     }
+}
 
 .buttonSmall{
     display: inline-block;
@@ -14,6 +14,7 @@
     color: $colorLightest;
     border: 2px solid $colorThreeBorder;
     width: calc(50% - 30px);
+    padding: 10px;
     &:hover{
         background-color: $colorThreeBorder;
     }

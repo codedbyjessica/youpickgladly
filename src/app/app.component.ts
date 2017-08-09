@@ -40,6 +40,7 @@ export class AppComponent implements OnInit{
   public allCuisines
 
   public showThumb= true;
+  public showLoader = false;
 
   constructor(private api: ZomatoService) {}
 
@@ -67,6 +68,7 @@ export class AppComponent implements OnInit{
   }
 
   getFood(){
+    this.showLoader = true;
     this.restaurants = []
     // cuisine array
     if(this.allCuisines === true){
@@ -144,6 +146,7 @@ export class AppComponent implements OnInit{
 
       this.midLat = (this.myLat + this.restaurantLat)/2;
       this.midLong = (this.myLong + this.restaurantLong)/2;
+      this.showLoader = false;
   }
 
 

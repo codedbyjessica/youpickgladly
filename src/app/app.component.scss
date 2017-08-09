@@ -1,6 +1,5 @@
 @import "~variables.scss";
 
-
 .firstImgContainer{
     height:150px;
     width: 100%;
@@ -8,7 +7,6 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
-
 .imgContainer{
     height:150px;
     width: 100%;
@@ -19,7 +17,6 @@
 .landing{
     background: $colorLightest;
 }
-
 header{
     display: flex;
     flex-wrap: wrap;
@@ -30,7 +27,6 @@ header{
         width: 50%;
     }
 }
-
 .resultRest{
     display: flex;
     flex-wrap: wrap;
@@ -38,7 +34,6 @@ header{
         display: inline;
     }
 }
-
 .resultFirstWrapper{
     display: flex;
     .resultFirstInfo{
@@ -46,10 +41,9 @@ header{
     }
     .resultsMap{
         width: 60%;
-        padding: 20px 0 20px 20px;
+        padding: 20px;
     }
 }
-
 .resultFirst{
     width: 100%;
     h1{
@@ -70,19 +64,33 @@ header{
         padding: 20px;
     }
 }
+.sorryLine{
+    width: 100%;
+    h1{
+        color :$colorLightest;
+        font-size: 5rem;
+        font-family: 'Droid Serif', serif;
+        font-style: italic;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        font-weight: normal;
+        margin: 0;
+    }
+        background: $colorOne;
+        padding: 40px 20px;
 
+}
 .howAboutBorder{
     background: $colorOne;
     height: 40px;
     width: 100%;
 }
-
 .result{
     width: 33.33%;
     .resultRestInfo{
         padding: 20px;
         &:first-of-type{
-            height: 150px;
+            height: 180px;
             padding-bottom: 0;
         }
         &:last-of-type{
@@ -125,7 +133,7 @@ header{
         .resultRestInfo{
             padding: 20px;
             &:first-of-type{
-                height: 150px;
+                height: 190px;
                 padding-bottom: 0;
             }
             &:last-of-type{
