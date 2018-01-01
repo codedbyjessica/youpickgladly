@@ -25,7 +25,7 @@ export class FiltersComponent implements OnInit {
     this.go.emit()
   }
 
-  allCuisineToggle(){
+  allCuisineToggle(e){
     this.selectAll.emit(this.allCuisines)
   }
 
@@ -39,6 +39,7 @@ export class FiltersComponent implements OnInit {
       }
     });
 
+    console.log(this.cuisineChoices)
     this.cuisine.emit(this.cuisineChoices)
   }
 

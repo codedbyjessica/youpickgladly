@@ -14,6 +14,7 @@ private apiUrl
   ) {}
 
   getData(lat, long, cuisine, radius):Observable<any> {
+    console.log(cuisine)
     this.apiUrl = 'https://developers.zomato.com/api/v2.1/search?' + 'lat=' + lat + '&lon=' + long + cuisine + radius;
     return this.http.get(this.apiUrl, {
         headers: new Headers(

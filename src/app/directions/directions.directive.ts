@@ -23,6 +23,7 @@ export class DirectionsMapDirective {
 
     ngOnChanges(){
         this.getDirections();
+        console.log("yooooooooo");
     }
 
     getDirections() {
@@ -40,6 +41,7 @@ export class DirectionsMapDirective {
             if (status === 'OK') {
                 this.actualDirections = response.routes[0].legs[0];
                 this.getActualDirections(this.actualDirections);
+                // console.log("legs", this.actualDirections.start_address)
             } else {
                 window.alert('Directions request failed due to ' + status);
             }
