@@ -14,9 +14,13 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
-.landing{
-    background: $colorLightest;
+.landingWrapper{
+    background: $colorLightest
 }
+// .landing{
+//     background: $colorOne;
+//     min-height: 100vh;
+// }
 header{
     display: flex;
     flex-wrap: wrap;

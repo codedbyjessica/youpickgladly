@@ -5,6 +5,7 @@
 
 
 <section class="landing">
+  <section class="landingWrapper">
   <header>
     <app-header></app-header>
     <app-location 
@@ -21,11 +22,12 @@
     (radius)="myRadius($event)"
     (selectAll)="selectAllCuisines($event)">
   </app-filters>
+  </section>
 </section>
 
 
 
-<section class="results">
+<section class="results" id="results">
   <div class="sorryLine" *ngIf="dataHere && noRestaurantsFound"><h1>Sorry, no results found</h1></div>
   
   <!--<div class="resultFirst">-->
@@ -59,9 +61,12 @@
     
   <div class="howAboutBorder"></div>  
 
-  <app-loader *ngIf="showLoader"></app-loader>
+  <div id="loader">
+    <app-loader id="loader" *ngIf="showLoader"></app-loader>
+  </div>
 
-  <div class="resultRest">
+
+  <div class="resultRest" *ngIf="dataHere && !noRestaurantsFound">
     <div class="result"
     *ngFor="let restaurant of restaurants; let i=index ">
       <div class="resultRestInfo">

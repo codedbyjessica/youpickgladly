@@ -69,6 +69,7 @@ export class AppComponent implements OnInit{
 
   getFood(){
     this.showLoader = true;
+
     this.restaurants = []
     // cuisine array
     if(this.allCuisines === true){
@@ -84,24 +85,19 @@ export class AppComponent implements OnInit{
 
     if(this.myLat){
       this.locationNotFound = false;
-      this.api.getData(this.myLat, this.myLong, this.cuisine, this.radius).subscribe(res => {
+      this.api.getData(this.myLat, this.myLong, this.cuisine, this.radius)
+      .subscribe(res => {
         this.dataHere = true;
-        this.results = res.restaurants
-        // console.log(this.results)
+        this.results = res.restaurants;
         this.getRestaurants(this.results)
-        
       });
 
     } else{
-      console.log("where u at")
             this.locationNotFound = true;
     }
-
   }
 
   getRestaurants(results){
-
-      console.log(this.restaurants.length <= 0)
     results.forEach(restaurant => {
       if(!this.price){
         this.restaurants.push(restaurant)
@@ -110,13 +106,10 @@ export class AppComponent implements OnInit{
         this.restaurants.push(restaurant)
       }
     });
-    // console.log(this.restaurants)
 
     if(this.restaurants.length <= 0){
       this.noRestaurantsFound = true
-      // console.log(this.dataHere, this.noRestaurantsFound)
     }else{
-      console.log("shouldbefalse")
       this.getRestaurantData();
       this.noRestaurantsFound = false;
     }
@@ -125,12 +118,8 @@ export class AppComponent implements OnInit{
   // bring to first
   getRestaurantLocation(i){
     this.restaurants.splice(0, 0, this.restaurants.splice(i, 1)[0]).join()
-    // console.log(i)
-    // console.log(this.restaurants)
-      this.getRestaurantData();
-
+    this.getRestaurantData();
   }
-
 
   getRestaurantData(){
       this.restaurants.forEach(place => {
@@ -147,6 +136,17 @@ export class AppComponent implements OnInit{
       this.midLat = (this.myLat + this.restaurantLat)/2;
       this.midLong = (this.myLong + this.restaurantLong)/2;
       this.showLoader = false;
+
+      setTimeout( () => {
+        const el = 'results';
+        this.scrollToResults(el);
+      }, 300);
+
+  }
+
+  scrollToResults(el) {
+    const resultPosition = document.getElementById(el).offsetTop;
+    window.scrollTo( 0, resultPosition - 20 );
   }
 
 

@@ -39,7 +39,6 @@ export class FiltersComponent implements OnInit {
       }
     });
 
-    console.log(this.cuisineChoices)
     this.cuisine.emit(this.cuisineChoices)
   }
 

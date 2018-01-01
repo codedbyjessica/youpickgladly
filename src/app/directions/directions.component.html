@@ -12,10 +12,12 @@
 
 <div *ngIf="directions">
 
-<input id="walking" type="radio" [(ngModel)]="travelMode" value="WALKING" name="travelMode"/> 
-<label for="walking" class="buttonSmall"> Walking</label>
-<input id="driving" type="radio" [(ngModel)]="travelMode" value="DRIVING" name="travelMode"/>
-<label for="driving" class="buttonSmall"> Driving</label>
+    <input id="walking" type="radio" [(ngModel)]="travelMode" value="WALKING" name="travelMode"/> 
+    <label for="walking" class="buttonSmall"> Walking</label>
+    <input id="driving" type="radio" [(ngModel)]="travelMode" value="DRIVING" name="travelMode"/>
+    <label for="driving" class="buttonSmall"> Driving</label>
+
+
 
     {{ travelMode }} DIRECTIONS
     <!--<p> from {{ legs.start_address}} </p>-->

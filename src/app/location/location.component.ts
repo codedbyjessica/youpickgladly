@@ -32,8 +32,6 @@ export class LocationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
-    console.log(this.locationNotFound)
     //create search FormControl
     this.searchControl = new FormControl();
 
@@ -83,7 +81,6 @@ export class LocationComponent implements OnInit {
           };
           // this.zoom = 12;
           this.myLatLongPlace.emit(this.latlong)
-        console.log(position)
       });
     }
   }
