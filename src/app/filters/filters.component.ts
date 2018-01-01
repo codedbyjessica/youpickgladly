@@ -38,8 +38,6 @@ export class FiltersComponent implements OnInit {
         this.cuisineChoices.splice(indexx, 1);
       }
     });
-
-    console.log(this.cuisineChoices)
     this.cuisine.emit(this.cuisineChoices)
   }
 
